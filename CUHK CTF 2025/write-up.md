@@ -91,10 +91,12 @@ if __name__ == "__main__":
 ```
 
 </details>
+
 >After running the code, I put the binary numbers into [CyberChef](https://gchq.github.io/CyberChef)
-![sc4.png](media/sc4.png) and got the flag!
+![sc4.png](media/sc4.png)  and got the flag!
 ![sc5.png](media/sc5.png)
 
 ## Conclusion:
 I had a lot of fun doing this chal and would love to see something similar again next year! Did not expect to blood this! :D
+
 
