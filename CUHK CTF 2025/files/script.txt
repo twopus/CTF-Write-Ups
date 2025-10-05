@@ -1,0 +1,38 @@
+import numpy as np
+import soundfile as sf
+
+def get_dominant_freq(chunk, samplerate):
+    # FFT
+    fft = np.fft.rfft(chunk)
+    freqs = np.fft.rfftfreq(len(chunk), 1/samplerate)
+    idx = np.argmax(np.abs(fft))
+    return freqs[idx]
+
+def decode_bits_from_audio(filename, bit_duration=0.05, f0=500, f1=1000, threshold=250):
+    # Read audio
+    data, samplerate = sf.read(filename)
+    if data.ndim > 1:
+        data = data[:, 0]  # Use first channel if stereo
+
+    samples_per_bit = int(bit_duration * samplerate)
+    num_bits = len(data) // samples_per_bit
+
+    bits = []
+    for i in range(num_bits):
+        chunk = data[i*samples_per_bit:(i+1)*samples_per_bit]
+        if len(chunk) < samples_per_bit:
+            break
+        freq = get_dominant_freq(chunk, samplerate)
+        # Decide bit value based on which frequency it's closer to
+        if abs(freq - f0) < abs(freq - f1):
+            bits.append('0')
+        else:
+            bits.append('1')
+        # Optional: print or debug
+        # print(f"Chunk {i}: Dominant freq = {freq:.1f} Hz, Bit = {bits[-1]}")
+    return ''.join(bits)
+
+if __name__ == "__main__":
+    filename = "input.wav"  # Replace with your audio file
+    bitstream = decode_bits_from_audio(filename)
+    print("Decoded bits:", bitstream)
