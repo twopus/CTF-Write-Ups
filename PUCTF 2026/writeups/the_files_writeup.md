@@ -11,7 +11,7 @@ Is this related to THE files? 👀 Let's find out together
 
 ## Description:
 I have to release the files. Nuttyshell is too evil. The truth must be revealed!
-(There are 2 flags for this challenge, you must submit both flags to get the score.)
+(There are 2 flags for this challenge, you must sumbit both flags to get the score.)
 
 [Link to the challenge](https://ctf.polyuctf.com/challenges?#The%20Files-57)
 
